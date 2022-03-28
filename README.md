@@ -19,7 +19,9 @@ Navigate to `http://localhost:4567/`
 
 ## File manifest
 
-## Process
+## Functional representation of user stories
+
+See the [google doc](https://docs.google.com/document/d/1UF_nX_n-1_r39LqZHWfzZSW_v_b00YrWtkP7_YewTh0/edit?usp=sharing).
 
 
 ```
