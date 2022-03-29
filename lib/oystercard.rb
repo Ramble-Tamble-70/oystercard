@@ -33,7 +33,7 @@ class Oystercard
   end
 
   def add_journey_history
-    @list_of_journeys.push({@entry_station => @exit_station})
+    @list_of_journeys.push({"#{@entry_station.station_name} #{@entry_station.zone}" => "#{@exit_station.station_name} #{@exit_station.zone}"})
     @entry_station = nil
     @exit_station = nil
   end
