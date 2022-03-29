@@ -15,6 +15,10 @@ class Oystercard
     @balance += money
   end
 
+  def deduct(money)
+    @balance -= money
+  end
+
   private
 
   def check_top_up(money)

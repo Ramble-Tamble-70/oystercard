@@ -18,4 +18,8 @@ describe Oystercard do
     card.top_up(card.limit)
     expect{ card.top_up(1) }.to raise_error("Cannot top-up. Would exceed #{card.limit}")
   end
+
+  it 'will deduct fare from balance when requested' do
+    expect{ subject.deduct(5) }.to change{ subject.balance }.by(-5)
+  end
 end
