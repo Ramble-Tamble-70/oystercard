@@ -3,5 +3,5 @@ ruby '3.0.0'
 
 group :test, :development do
   gem 'rspec'
-  gem 'rubocop'
+  gem 'rubocop', '1.20'
 end

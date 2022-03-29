@@ -24,6 +24,7 @@ describe Oystercard do
   end
 
   it '#touch_in - Change @card_status variable to in use' do
+    subject.top_up(1)
     expect(subject.touch_in).to eq("in use")
   end
 
@@ -32,7 +33,12 @@ describe Oystercard do
   end
 
   it '#in_journey? - To provide a true value' do
+    subject.top_up(1)
     subject.touch_in
     expect(subject).to be_in_journey
+  end
+
+  it 'raise error if card less than minimum amount' do
+    expect { subject.touch_in }.to raise_error("insufficient funds, less than #{@MINIMUM_FARE}")
   end
 end
