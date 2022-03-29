@@ -22,4 +22,17 @@ describe Oystercard do
   it 'will deduct fare from balance when requested' do
     expect{ subject.deduct(5) }.to change{ subject.balance }.by(-5)
   end
+
+  it '#touch_in - Change @card_status variable to in use' do
+    expect(subject.touch_in).to eq("in use")
+  end
+
+  it '#touch_out - Change @card_status variable to not in use' do
+    expect(subject.touch_out).to eq("not in use")
+  end
+
+  it '#in_journey? - To provide a true value' do
+    subject.touch_in
+    expect(subject).to be_in_journey
+  end
 end
