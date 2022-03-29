@@ -3,30 +3,18 @@ require './lib/oystercard'
 describe Oystercard do
   let(:station) { double :station }
   it 'initializes with a balance of 0' do
-    card = Oystercard.new
-    expect(card.balance).to eq 0
+    expect(subject.balance).to eq 0
   end
 
   it 'tops up up money when given' do
-    card = Oystercard.new
-    money = rand(card.limit)
-    card.top_up(money)
-    expect(card.balance).to eq money
+    money = rand(subject.limit)
+    subject.top_up(money)
+    expect(subject.balance).to eq money
   end
 
   it 'will not allow topping that would exceed its limit of £90' do
-    card = Oystercard.new
-    card.top_up(card.limit)
-    expect{ card.top_up(1) }.to raise_error("Cannot top-up. Would exceed #{card.limit}")
-  end
-
-  it '#touch_in - Change @card_status variable to in use' do
-    subject.top_up(1)
-    expect(subject.touch_in(station)).to eq("in use")
-  end
-
-  it '#touch_out - Change @card_status variable to not in use' do
-    expect(subject.touch_out).to eq("not in use")
+    subject.top_up(subject.limit)
+    expect{ subject.top_up(1) }.to raise_error("Cannot top-up. Would exceed #{subject.limit}")
   end
 
   it '#in_journey? - To provide a true value' do
