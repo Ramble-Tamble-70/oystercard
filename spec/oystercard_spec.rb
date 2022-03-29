@@ -19,10 +19,6 @@ describe Oystercard do
     expect{ card.top_up(1) }.to raise_error("Cannot top-up. Would exceed #{card.limit}")
   end
 
-  it 'will deduct fare from balance when requested' do
-    expect{ subject.deduct(5) }.to change{ subject.balance }.by(-5)
-  end
-
   it '#touch_in - Change @card_status variable to in use' do
     subject.top_up(1)
     expect(subject.touch_in).to eq("in use")
@@ -40,5 +36,11 @@ describe Oystercard do
 
   it 'raise error if card less than minimum amount' do
     expect { subject.touch_in }.to raise_error("insufficient funds, less than #{@MINIMUM_FARE}")
+  end
+
+  it '#touch_out - Checks @balance has been reduced by minimum fare' do
+    subject.top_up(10)
+    subject.touch_in
+    expect { subject.touch_out }.to change { subject.balance }.by(-1)
   end
 end
