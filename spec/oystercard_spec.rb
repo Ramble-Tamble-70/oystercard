@@ -45,11 +45,11 @@ describe Oystercard do
     expect(subject.list_of_journeys).to be_empty
   end
 
-  it '#touch_out changes @exit_station' do
+  it '#touch_out changes @exit_station to station then nil' do
     subject.top_up(10)
     subject.touch_in(station)
     subject.touch_out(station)
-    expect(subject).to have_attributes(:exit_station => station)
+    expect(subject).to have_attributes(:exit_station => nil)
   end
 
   it '#touch_in and #touch_out creates one journey' do
